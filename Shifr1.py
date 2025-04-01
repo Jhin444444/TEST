@@ -25,10 +25,10 @@ alph = rus + rus.upper() + nums + smbs  # алфавит
 
 def rand_alph(alph): # перемешивание алфавита
     symbols = list(alph)
-    random.shuffle(symbols) # случайное перемешивание символов
+    # random.shuffle(symbols) # случайное перемешивание символов
     return symbols
 
-line = input("Введите текс: ") 
+line = input("Введите текст: ") 
 
 turn = 3  # шаг смещения по Цезарю
 
