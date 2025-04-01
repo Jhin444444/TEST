@@ -3,12 +3,12 @@ from Shifr1 import code_or_decode, alph, rand_alph
 
 def test_encrypt():
     test_line = "привет"
-    expected_result = "тулзкч"
+    expected_result = "тулезх"
     result = code_or_decode(alph, test_line, 3, 0)
     assert result == expected_result
 
 def test_decrypt():
-    test_line = "тулзкч"
+    test_line = "тулезх"
     expected_result = "привет"
     result = code_or_decode(alph, test_line, 3, 1)
     assert result == expected_result
