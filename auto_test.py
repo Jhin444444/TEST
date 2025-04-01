@@ -3,7 +3,7 @@ from Shifr1 import code_or_decode, alph, rand_alph
 
 def test_encrypt():
     test_line = "привет"
-    expected_result = "тулзкч"  # Для шага 3 в исходном алфавите
+    expected_result = "тулзкч"
     result = code_or_decode(alph, test_line, 3, 0)
     assert result == expected_result
 
