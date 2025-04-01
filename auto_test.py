@@ -1,5 +1,5 @@
 import pytest
-from your_script_name import code_or_decode, alph, rand_alph  # Замените `your_script_name` на имя вашего файла
+from Shifr1 import code_or_decode, alph, rand_alph  # Замените `your_script_name` на имя вашего файла
 
 def test_encrypt():
     """Проверка шифрования (direct=0)."""
