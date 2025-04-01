@@ -1,25 +1,14 @@
 name: Run Tests
 
-on:
-  push:
-    branches: [ main, dev ]  # Запускать при пуше в main или dev
-  pull_request:
-    branches: [ main ]       # Запускать при PR в main
+on: [push, pull_request]  # Запускать при любом push или PR
 
 jobs:
   test:
-    runs-on: ubuntu-latest   # ОС для тестов (можно выбрать windows/macOS)
-
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4  # Клонирует репозиторий
-
-    - name: Set up Python       # Пример для Python (можно заменить на Node.js, Java и т. д.)
-      uses: actions/setup-python@v4
+    - uses: actions/setup-python@v4
       with:
         python-version: '3.11'
-
-    - name: Install dependencies
-      run: pip install -r requirements.txt  # Установка зависимостей
-
-    - name: Run tests
-      run: pytest  # Запуск тестов (может быть `npm test`, `mvn test` и т. д.)
+    - run: pip install pytest  # Устанавливаем pytest
+    - run: pytest test_cipher.py -v  # Запускаем тесты

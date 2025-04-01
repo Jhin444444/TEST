@@ -1,21 +1,21 @@
 import random
 
 
-def code_or_decode(alph,line, turn):
-    if direct == 0: # шифрование
-            result = "" 
-            for i in line:
-                if i in alph: # проверка
-                    indx = alph.index(i) # узнаём индекс
-                    result += alph[indx + turn] # прибавляем шаг
-            return result        
-    if direct == 1: # дешифрование       
-            result = ""
-            for i in line:
-                if i in alph: # проверка
-                    indx = alph.index(i) # узнаем индекс
-                    result += alph[indx - turn] # вычитаем шаг  
-            return result      
+def code_or_decode(alph, line, turn, direct):  # Добавлен параметр direct
+    if direct == 0:  # Шифрование
+        result = ""
+        for i in line:
+            if i in alph:
+                indx = alph.index(i)
+                result += alph[(indx + turn) % len(alph)]  # Защита от выхода за границы
+        return result
+    elif direct == 1:  # Дешифрование
+        result = ""
+        for i in line:
+            if i in alph:
+                indx = alph.index(i)
+                result += alph[(indx - turn) % len(alph)]
+        return result    
 
 
 rus = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя'
