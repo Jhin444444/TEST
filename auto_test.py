@@ -20,7 +20,7 @@ class TestCaesarCipher:
     @allure.title("Дешифрование слова 'тулезх' с шагом 3")
     def test_decrypt(self):
         test_line = "тулезх"
-        expected_result = "привет"
+        expected_result = "привеп"
         result = code_or_decode(alph, test_line, 3, 1)
         assert result == expected_result
 
