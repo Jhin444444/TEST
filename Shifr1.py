@@ -14,7 +14,7 @@ def code_or_decode(alph, line, turn, direct):
                 result += alph[(indx - turn) % len(alph)]
         return result
 
-rus = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя'
+rus = 'абвгдежзийклмнопрстуфхцчшщъыьэюя'  # Без `ё`
 nums = '1234567890'
 smbs = ':; !&-+=()*/.,'
 alph = rus + rus.upper() + nums + smbs
