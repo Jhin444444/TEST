@@ -3,19 +3,19 @@ import random
 
 def code_or_decode(alph,line, turn):
     if direct == 0: # шифрование
-            res = "" 
+            result = "" 
             for i in line:
                 if i in alph: # проверка
                     indx = alph.index(i) # узнаём индекс
-                    res += alph[indx + turn] # прибавляем шаг
-            return res        
+                    result += alph[indx + turn] # прибавляем шаг
+            return result        
     if direct == 1: # дешифрование       
-            res = ""
+            result = ""
             for i in line:
                 if i in alph: # проверка
                     indx = alph.index(i) # узнаем индекс
-                    res += alph[indx - turn] # вычитаем шаг  
-            return res      
+                    result += alph[indx - turn] # вычитаем шаг  
+            return result      
 
 
 rus = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя'
