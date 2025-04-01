@@ -11,4 +11,4 @@ jobs:
       with:
         python-version: '3.11'
     - run: pip install pytest  # Устанавливаем pytest
-    - run: pytest test_cipher.py -v  # Запускаем тесты
+    - run: pytest auto_test.py -v  # Запускаем тесты
