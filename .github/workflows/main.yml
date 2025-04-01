@@ -1,27 +1,39 @@
-name: Run Tests
+name: Run Tests with Allure Reporting
 
-on: [push, pull_request]  # Запускать при любом push или PR
+on: [push, pull_request]
 
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4  # Клонирует репозиторий
+    - uses: actions/checkout@v4
     - uses: actions/setup-python@v4
       with:
         python-version: '3.11'
-    - run: pip install pytest  # Устанавливаем pytest
-    - run: pip install allure-pytest pytest # Allure
-    - run: pytest --alluredir=allure_results auto_test.py -v  # Запускаем тесты
-    - run: allure serve allure_results
+    
+    - name: Install dependencies
+      run: |
+        pip install pytest allure-pytest
+        
+    - name: Run tests
+      run: pytest --alluredir=allure_results auto_test.py -v
+      
+    - name: Install Allure CLI
+      run: |
+        sudo apt-get update
+        sudo apt-get install default-jre
+        curl -o allure-2.24.0.tgz -Ls https://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/2.24.0/allure-commandline-2.24.0.tgz
+        sudo tar -zxvf allure-2.24.0.tgz -C /opt/
+        sudo ln -s /opt/allure-2.24.0/bin/allure /usr/bin/allure
+        allure --version
+        
     - name: Generate Allure report
-      if: always()  # Запускать даже при падении тестов
+      if: always()
       run: |
         allure generate allure_results --clean -o allure_report
-        echo "ALLURE_REPORT=$(pwd)/allure_report" >> $GITHUB_ENV
+        
     - name: Upload Allure report
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: allure-report
-        path: allure_report    
-      
+        path: allure_report
