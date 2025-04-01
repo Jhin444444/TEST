@@ -1,6 +1,7 @@
 import pytest
-from Shifr1 import code_or_decode, alph, rand_alph
 import allure
+from Shifr1 import code_or_decode, alph, rand_alph
+
 
 @allure.feature("Шифрование Цезаря")
 class TestCaesarCipher:
