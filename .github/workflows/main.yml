@@ -5,6 +5,9 @@ on:
     branches: [ main, master ]  # Ограничиваем триггер для основных веток
   pull_request:
 
+permissions: 
+  contents: write
+
 jobs:
   test:
     runs-on: ubuntu-latest
