@@ -11,4 +11,17 @@ jobs:
       with:
         python-version: '3.11'
     - run: pip install pytest  # Устанавливаем pytest
-    - run: pytest auto_test.py -v  # Запускаем тесты
+    - run: pip install allure-pytest pytest # Allure
+    - run: pytest --alluredir=allure_results auto_test.py -v  # Запускаем тесты
+    - run: allure serve allure_results
+    - name: Generate Allure report
+      if: always()  # Запускать даже при падении тестов
+      run: |
+        allure generate allure_results --clean -o allure_report
+        echo "ALLURE_REPORT=$(pwd)/allure_report" >> $GITHUB_ENV
+    - name: Upload Allure report
+      uses: actions/upload-artifact@v3
+      with:
+        name: allure-report
+        path: allure_report    
+      
